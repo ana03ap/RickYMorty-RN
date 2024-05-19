@@ -1,20 +1,30 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 
-const Cards = ({ character }) => {
+// Define el tipo de las props que recibe el componente Cards
+interface CardsProps {
+  character: {
+    id: number;
+    name: string;
+    image: string;
+    age: number;
+    profession: string;
+    nationality: {
+      name: string;
+    };
+  };
+}
+
+const Cards: React.FC<CardsProps> = ({ character }) => {
   return (
     <View style={styles.card}>
       <Image source={{ uri: character.image }} style={styles.image} />
       <Text style={styles.name}>{character.name}</Text>
       <View style={styles.infoContainer}>
         <View style={styles.infoColumn}>
-          <Text>Status: {character.status}</Text>
-          <Text>Species: {character.species}</Text>
-          <Text>Gender: {character.gender}</Text>
-        </View>
-        <View style={styles.infoColumn}>
-          <Text>Type: {character.type}</Text>
-          <Text>Origin: {character.origin.name}</Text>
+          <Text>age: {character.age}</Text>
+          <Text>profession: {character.profession}</Text>
+          <Text>nationality: {character.nationality.name}</Text>
         </View>
       </View>
     </View>
@@ -33,11 +43,11 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     width: "45%",
-    height: 350, 
+    height: 500, 
   },
   image: {
     width: "100%",
-    height: 150,
+    height: 200,
     resizeMode: "cover",
     borderRadius: 8,
   },
